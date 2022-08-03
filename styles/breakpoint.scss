@@ -1,0 +1,73 @@
+@mixin breakpoint($value, $min-value: false) {
+  @if $value == "phone-small" {
+    @media only screen and (max-width: 500px) {
+      @content;
+    }
+  }
+
+  @if $value == "from-phone-small" {
+    @media only screen and (min-width: 501px) {
+      @content;
+    }
+  } @else if $value == "phone-big" {
+    @media only screen and (min-width: 501px) and (max-width: 750px) {
+      @content;
+    }
+  } @else if $value == "phone" {
+    @media only screen and (max-width: 750px) {
+      @content;
+    }
+  } @else if $value == "to-tablet" {
+    @media only screen and (max-width: 1149px) {
+      @content;
+    }
+  } @else if $value == "from-tablet" {
+    @media only screen and (min-width: 751px) {
+      @content;
+    }
+  } @else if $value == "tablet-p" {
+    @media only screen and (min-width: 751px) and (max-width: 949px) {
+      @content;
+    }
+  } @else if $value == "to-tablet-p" {
+    @media only screen and (max-width: 949px) {
+      @content;
+    }
+  } @else if $value == "tablet-l" {
+    @media only screen and (min-width: 950px) and (max-width: 1149px) {
+      @content;
+    }
+  } @else if $value == "from-tablet-l" {
+    @media only screen and (min-width: 950px) {
+      @content;
+    }
+  } @else if $value == "tablet" {
+    @media only screen and (min-width: 751px) and (max-width: 1149px) {
+      @content;
+    }
+  } @else if $value == "to-laptop" {
+    @media only screen and (max-width: 1149px) {
+      @content;
+    }
+  } @else if $value == "from-laptop" {
+    @media only screen and (min-width: 1150px) {
+      @content;
+    }
+  } @else if $value == "laptop" {
+    @media only screen and (min-width: 1150px) and (max-width: 1439px) {
+      @content;
+    }
+  } @else if $value == "desktop" {
+    @media only screen and (min-width: 1440px) {
+      @content;
+    }
+  } @else if $min-value != false {
+    @media only screen and (min-width: $min-value) and (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: $value) {
+      @content;
+    }
+  }
+}
