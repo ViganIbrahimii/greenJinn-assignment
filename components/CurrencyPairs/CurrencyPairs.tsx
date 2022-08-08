@@ -36,7 +36,9 @@ export const CurrencyPairs: React.FC<CurrencyPairsProps> = ({
         currencyPairsData.map((currencyPair: any, i: number) => (
           <CurrencyPairButton
             key={i}
-            onClick={() => fetchSpecificPair(currencyPair.url_symbol)}
+            onClick={() =>
+              fetchSpecificPair(currencyPair.url_symbol, currencyPair.name)
+            }
             name={currencyPair.name}
           />
         ))

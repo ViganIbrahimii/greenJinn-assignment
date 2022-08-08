@@ -1,23 +1,29 @@
-.container {
+.mainContainer {
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
-}
-.leftSide,
-.rightSide {
-  border: 1px solid #000;
-  width: 47%;
-}
-.topRightSide,
-.bottomRightSide {
-  border: 1px solid #000;
-  padding: 10px;
-}
-.topRightSide {
-  margin: 10px;
-  max-height: 300px;
-  overflow-y: auto;
-}
-.bottomRightSide {
-  margin: 20px;
+  padding: 50px;
+  .valuesContainer {
+    display: flex;
+    justify-content: space-between;
+    .averageValue {
+      border: 1px solid #000;
+      width: 47%;
+      display: flex;
+      justify-content: center;
+    }
+    .tradingPairs {
+      border: 1px solid #000;
+      width: 47%;
+
+      .currencyPairs {
+        margin: 10px;
+        max-height: 350px;
+        overflow-y: auto;
+        border: 1px solid black;
+      }
+      .bottomRightSide {
+        margin: 10px;
+      }
+    }
+  }
 }
