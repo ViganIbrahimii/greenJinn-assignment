@@ -4,7 +4,7 @@ import {
   thirdTickerValue,
 } from "components/api/TickerValue";
 import { useEffect, useState } from "react";
-import styles from "./AverageTickerValue.module.scss";
+import styles from "./AverageTickerValueStyle.module.scss";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export const AverageTickerValue = () => {
