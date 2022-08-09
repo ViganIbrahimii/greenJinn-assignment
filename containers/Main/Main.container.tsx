@@ -1,22 +1,37 @@
 import axios from "axios";
 import { AverageTickerValue } from "components/AverageTickerValue";
 import { CurrencyPairs } from "components/CurrencyPairs/CurrencyPairs";
-import { CurrencyChart } from "components/CurrencyChart";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./MainContainer.module.scss";
 import { GJNumbersView } from "components/TradingValues/GJNumbersView";
+import dynamic, { Loader, LoaderComponent } from "next/dynamic";
+import { CurrencyChartProps } from "../../components/CurrencyChart/CurrencyChart";
+
+const CurrencyChartClient = dynamic<CurrencyChartProps>(
+  () =>
+    import("../../components/CurrencyChart/CurrencyChart").then(
+      (mod) => mod.CurrencyChart
+    ),
+  { ssr: false }
+);
+
+export type ChartDataProps = { x: number; y: string }[];
 
 export const MainContainer = ({}) => {
-  const [specificPair, setSpecificPair] = useState<any>({});
-  const [specificPairTitle, setSpecificPairTitle] = useState<string>("");
+  const [specificPair, setSpecificPair] = useState({});
+  const [specificPairTitle, setSpecificPairTitle] = useState("");
+  const [chartType, setChartType] = useState("");
+  const [chartData, setChartData] = useState<ChartDataProps>([]);
 
   const fetchSpecificPair = async (url: string, name: string) => {
+    setChartData([]);
+    setChartType("");
     try {
       const { data } = await axios.get(`/api/specificpair/${url}`);
       if (data) {
         setSpecificPair(data);
         setSpecificPairTitle(name);
-        console.log(data, "data");
+        setChartType(url);
       }
     } catch (error: any) {
       console.log(error.message);
@@ -39,6 +54,13 @@ export const MainContainer = ({}) => {
             />
           </div>
         </div>
+      </div>
+      <div className={styles.chartContainer}>
+        <CurrencyChartClient
+          chartType={chartType}
+          chartData={chartData}
+          setChartData={setChartData}
+        />
       </div>
     </div>
   );

@@ -1,23 +1,20 @@
 import styles from "./AverageTickerValue.module.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { firstTickerValue } from "components/api/TickerValue";
+import ErrorInterface from "components/interfaces/error";
 
 export const AverageTickerValue = () => {
   const [firstValue, setFirstValue] = useState<number>();
   const [secondValue, setSecondValue] = useState<number>();
   const [thirdValue, setThirdValue] = useState<number>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [averageValue, setAverageValue] = useState<number>();
 
   const fetchFirstValue = async () => {
-    try {
-      const { data } = await axios.get("/api/tickervalues1");
-      if (data) {
-        setFirstValue(parseFloat(data.last));
-      }
-    } catch (error: any) {
-      console.log(error.message);
-    }
+    const result: string | ErrorInterface = await firstTickerValue();
+
+    setFirstValue(parseFloat(result));
   };
 
   const fetchSecondValue = async () => {

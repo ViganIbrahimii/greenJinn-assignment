@@ -15,7 +15,6 @@ export const GJNumbersView: React.FC<GJNumbersViewProps> = ({
       <h1>{specificPairTitle}</h1>
       <div className={styles.labelContainer}>
         {Object.keys(specificPair).map((values: string, i: number) => {
-          console.log(specificPair);
           return (
             <GJNumberLabel
               key={i}
