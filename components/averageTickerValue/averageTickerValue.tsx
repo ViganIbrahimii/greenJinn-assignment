@@ -58,7 +58,7 @@ export const AverageTickerValue = () => {
   return (
     <div className={styles.container}>
       {loading ? (
-        <ClipLoader color={"#000000"} loading={loading} size={50} />
+        <ClipLoader color={"#000000"} loading={loading} size={48} />
       ) : (
         <div className={styles.averageContainer}>
           <h3>Average Ticker Value:</h3>
