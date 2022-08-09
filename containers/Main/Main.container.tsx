@@ -1,4 +1,4 @@
-import { AverageTickerValue } from "../../components/AverageTickerValue/AverageTickerValue";
+import { AverageTickerValue } from "../../components/AverageTickerValue/averageTickerValue";
 import CurrencyPairs from "../../components/CurrencyPairs/CurrencyPairs";
 import { useState } from "react";
 import styles from "./MainContainer.module.scss";
