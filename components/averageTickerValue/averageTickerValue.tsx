@@ -1,44 +1,44 @@
-import styles from "./AverageTickerValue.module.scss";
-import axios from "axios";
+import {
+  firstTickerValue,
+  secondTickerValue,
+  thirdTickerValue,
+} from "components/api/TickerValue";
 import { useEffect, useState } from "react";
-import { firstTickerValue } from "components/api/TickerValue";
-import ErrorInterface from "components/interfaces/error";
+import styles from "./AverageTickerValue.module.scss";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const AverageTickerValue = () => {
-  const [firstValue, setFirstValue] = useState<number>();
+  const [firstValue, setFirstValue] = useState<number>(0);
   const [secondValue, setSecondValue] = useState<number>();
   const [thirdValue, setThirdValue] = useState<number>();
   const [loading, setLoading] = useState(true);
   const [averageValue, setAverageValue] = useState<number>();
 
   const fetchFirstValue = async () => {
-    const result: string | ErrorInterface = await firstTickerValue();
-
-    setFirstValue(parseFloat(result));
+    const result = await firstTickerValue();
+    if ("error" in result) {
+      console.log(result.message);
+      return;
+    }
+    setFirstValue(result.value);
   };
 
   const fetchSecondValue = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://api.coinbase.com/v2/exchange-rates?currency=BTC"
-      );
-      if (data) {
-        setSecondValue(parseFloat(data.data.rates.USD));
-      }
-    } catch (error: any) {
-      console.log(error.message);
+    const result = await secondTickerValue();
+    if ("error" in result) {
+      console.log(result.message);
+      return;
     }
+    setSecondValue(result.value);
   };
 
   const fetchThirdValue = async () => {
-    try {
-      const result = await axios.get("/api/tickervalues3");
-      if (result) {
-        setThirdValue(result.data[0][1]);
-      }
-    } catch (error: any) {
-      console.log(error.message);
+    const result = await thirdTickerValue();
+    if ("error" in result) {
+      console.log(result.message);
+      return;
     }
+    setThirdValue(result.value);
   };
 
   const calculateAverageValue = async () => {
@@ -57,7 +57,14 @@ export const AverageTickerValue = () => {
 
   return (
     <div className={styles.container}>
-      {loading ? <p>Loading</p> : <p>{averageValue}</p>}
+      {loading ? (
+        <ClipLoader color={"#000000"} loading={loading} size={50} />
+      ) : (
+        <div className={styles.averageContainer}>
+          <h3>Average Ticker Value:</h3>
+          <p>{averageValue}</p>
+        </div>
+      )}
     </div>
   );
 };

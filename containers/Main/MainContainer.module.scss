@@ -1,36 +1,68 @@
 .mainContainer {
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-
   padding: 50px;
   .valuesContainer {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    @include breakpoint("tablet") {
+      flex-direction: column;
+    }
+    @include breakpoint("phone") {
+      flex-direction: column;
+    }
     .averageValue {
-      border: 1px solid #000;
-      width: 47%;
+      background-color: white;
+      border: 1px solid #9270df;
+      border-radius: 12px;
+      width: 45%;
       display: flex;
       justify-content: center;
+      align-items: center;
+      @include breakpoint("tablet") {
+        width: 100%;
+      }
+      @include breakpoint("phone") {
+        width: 100%;
+      }
     }
     .tradingPairs {
-      border: 1px solid #000;
-      width: 47%;
+      background-color: white;
+      border: 1px solid #9270df;
+      border-radius: 12px;
+      width: 45%;
+      @include breakpoint("tablet") {
+        margin-top: 40px;
+        width: 100%;
+      }
+      @include breakpoint("phone") {
+        margin-top: 40px;
+        width: 100%;
+      }
 
       .currencyPairs {
         margin: 10px;
         max-height: 350px;
-        overflow-y: auto;
-        border: 1px solid black;
+        overflow-y: scroll;
+        // border: 1px solid black;
       }
-      .bottomRightSide {
+      .viewContainer {
         margin: 10px;
       }
     }
   }
   .chartContainer {
+    border-radius: 12px;
+    background-color: white;
     margin-top: 100px;
     width: 700px;
     height: 500px;
+    @include breakpoint("phone") {
+      width: 300px;
+      height: 300px;
+    }
   }
 }

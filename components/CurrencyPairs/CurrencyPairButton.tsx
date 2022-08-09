@@ -1,7 +1,7 @@
 import styles from "./CurrencyPairButton.module.scss";
 interface CurrencyPairButtonProps {
   name: string;
-  onClick: any;
+  onClick: () => void;
 }
 export const CurrencyPairButton: React.FC<CurrencyPairButtonProps> = ({
   name,

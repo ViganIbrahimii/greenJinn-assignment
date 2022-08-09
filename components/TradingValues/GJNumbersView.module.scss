@@ -1,14 +1,22 @@
 .container {
-  border: 1px solid black;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0px;
-
-  .labelContainer {
-    margin-top: 20px;
+  justify-content: center;
+  .currencyContainer {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    background: #eeeedc;
+    padding: 20px 0px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .labelContainer {
+      margin-top: 20px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      @include breakpoint("phone") {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   }
 }

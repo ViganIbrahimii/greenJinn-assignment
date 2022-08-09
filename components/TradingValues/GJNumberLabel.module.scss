@@ -10,7 +10,9 @@
     font-size: 16px;
     line-height: 19px;
     letter-spacing: -0.03em;
-
     color: #6f6f6f;
+    @include breakpoint("phone") {
+      font-size: 12px;
+    }
   }
 }

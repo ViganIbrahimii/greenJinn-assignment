@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "./CurrencyChart.module.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ChartDataProps } from "containers/Main/Main.container";
+import { fetchSpecificPairValue } from "components/api/CurrencyPairs";
 
 export interface CurrencyChartProps {
   chartType: string;
@@ -15,19 +16,18 @@ export const CurrencyChart: React.FC<CurrencyChartProps> = ({
   setChartData,
 }) => {
   let seconds = 0;
+
   const fetchChartsData = async () => {
     if (chartType) {
-      try {
-        const { data } = await axios.get(`/api/specificpair/${chartType}`);
-        if (data) {
-          setChartData((prev: ChartDataProps) => [
-            ...prev,
-            { x: seconds, y: data.last },
-          ]);
-        }
-      } catch (error: any) {
-        console.log(error.message);
+      const result = await fetchSpecificPairValue(chartType);
+      if ("error" in result) {
+        console.log(result.message);
+        return;
       }
+      setChartData((prev: ChartDataProps) => [
+        ...prev,
+        { x: seconds, y: result.value },
+      ]);
     }
   };
 
@@ -37,7 +37,6 @@ export const CurrencyChart: React.FC<CurrencyChartProps> = ({
       seconds += 10;
       fetchChartsData();
     }, 10000);
-
     return () => clearInterval(interval);
   }, [chartType]);
 
@@ -52,6 +51,22 @@ export const CurrencyChart: React.FC<CurrencyChartProps> = ({
         <ResponsiveLine
           {...commonProperties}
           data={[{ id: "Value", data: chartData }]}
+          useMesh={true}
+          tooltip={({ point }) => {
+            return (
+              <div
+                style={{
+                  background: "white",
+                  padding: "9px 12px",
+                  border: "1px solid #ccc",
+                }}
+              >
+                <div>Time: {point.data.xFormatted}s</div>
+                <div>Value: {point.data.yFormatted}</div>
+              </div>
+            );
+          }}
+          pointLabelYOffset={0}
           xScale={{
             type: "linear",
             min: "auto",
@@ -63,7 +78,7 @@ export const CurrencyChart: React.FC<CurrencyChartProps> = ({
             max: "auto",
           }}
           axisLeft={{
-            legend: "Value",
+            legend: "Last Value",
             legendOffset: 12,
           }}
           axisBottom={{
@@ -72,7 +87,7 @@ export const CurrencyChart: React.FC<CurrencyChartProps> = ({
           }}
         />
       ) : (
-        <div>avzxxss</div>
+        <div></div>
       )}
     </div>
   );

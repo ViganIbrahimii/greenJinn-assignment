@@ -2,4 +2,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @include breakpoint("tablet") {
+    padding: 50px;
+  }
+  @include breakpoint("phone") {
+    padding: 50px 0px;
+  }
+  .averageContainer {
+    background: linear-gradient(0deg, #f8d68c, #f8d68c), #7f56d9;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    @include breakpoint("tablet") {
+      font-size: 16px;
+    }
+    @include breakpoint("phone") {
+      font-size: 12px;
+      padding: 10px;
+    }
+
+    p {
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+  }
 }

@@ -1,16 +1,16 @@
 import styles from "./GJNumberLabel.module.scss";
 interface GJNumberLabelProps {
   values: string;
-  specificPair: string;
+  specificPairValue: string;
 }
 
 export const GJNumberLabel: React.FC<GJNumberLabelProps> = ({
   values,
-  specificPair,
+  specificPairValue,
 }) => {
   return (
     <div className={styles.container}>
-      <h1>{specificPair}</h1>
+      <h1>{specificPairValue}</h1>
       <p>{values}</p>
     </div>
   );
