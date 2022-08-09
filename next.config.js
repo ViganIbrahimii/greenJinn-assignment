@@ -26,5 +26,6 @@ module.exports = () => {
     sassOptions: {
       prependData: `@import 'styles/config.scss';`,
     },
+    target: "serverless",
   };
 };
