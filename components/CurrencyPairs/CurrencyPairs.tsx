@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchCurrencies } from "components/api/CurrencyPairs";
+import { fetchCurrencies } from "../api/CurrencyPairs";
 import { useEffect, useState } from "react";
 import { CurrencyPairButton } from "./CurrencyPairButton";
 import styles from "./CurrencyPairs.module.scss";

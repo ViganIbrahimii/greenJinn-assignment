@@ -3,8 +3,8 @@ import {
   CurrencyChartProps,
   CurrencyPairProps,
   CurrencyProps,
-} from "components/interfaces/CurrencyChart";
-import ErrorInterface from "components/interfaces/error";
+} from "../interfaces/CurrencyChart";
+import ErrorInterface from "../interfaces/error";
 
 export const fetchCurrencies = async (): Promise<
   CurrencyProps | ErrorInterface

@@ -2,8 +2,8 @@ import { ResponsiveLine } from "@nivo/line";
 import axios from "axios";
 import styles from "./CurrencyChart.module.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { ChartDataProps } from "containers/Main/Main.container";
-import { fetchSpecificPairValue } from "components/api/CurrencyPairs";
+import { ChartDataProps } from "../../containers/Main/Main.container";
+import { fetchSpecificPairValue } from "../api/CurrencyPairs";
 
 export interface CurrencyChartProps {
   chartType: string;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import TickerValueInterface from "components/interfaces/TickerValue";
+import TickerValueInterface from "../interfaces/TickerValue";
 import ErrorInterface from "../interfaces/error";
 
 export const firstTickerValue = async (): Promise<

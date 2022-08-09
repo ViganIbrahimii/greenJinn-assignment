@@ -2,7 +2,7 @@ import {
   firstTickerValue,
   secondTickerValue,
   thirdTickerValue,
-} from "components/api/TickerValue";
+} from "../api/TickerValue";
 import { useEffect, useState } from "react";
 import styles from "./AverageTickerValueStyle.module.scss";
 import ClipLoader from "react-spinners/ClipLoader";

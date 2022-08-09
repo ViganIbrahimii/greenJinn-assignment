@@ -1,12 +1,12 @@
-import { AverageTickerValue } from "components/AverageTickerValue/AverageTickerValue";
-import CurrencyPairs from "components/CurrencyPairs/CurrencyPairs";
+import { AverageTickerValue } from "../../components/AverageTickerValue/AverageTickerValue";
+import CurrencyPairs from "../../components/CurrencyPairs/CurrencyPairs";
 import { useState } from "react";
 import styles from "./MainContainer.module.scss";
-import { GJNumbersView } from "components/TradingValues/GJNumbersView";
+import { GJNumbersView } from "../../components/TradingValues/GJNumbersView";
 import dynamic from "next/dynamic";
 import { CurrencyChartProps } from "../../components/CurrencyChart/CurrencyChart";
-import { fetchSpecificCurrencyPair } from "components/api/CurrencyPairs";
-import { CurrencyPairProps } from "components/interfaces/CurrencyChart";
+import { fetchSpecificCurrencyPair } from "../../components/api/CurrencyPairs";
+import { CurrencyPairProps } from "../../components/interfaces/CurrencyChart";
 
 const CurrencyChartClient = dynamic<CurrencyChartProps>(
   () =>

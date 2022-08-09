@@ -1,7 +1,7 @@
 import { GJNumberLabel } from "./GJNumberLabel";
 import styles from "./GJNumbersView.module.scss";
 import ClipLoader from "react-spinners/ClipLoader";
-import { CurrencyPairProps } from "components/interfaces/CurrencyChart";
+import { CurrencyPairProps } from "../interfaces/CurrencyChart";
 
 interface GJNumbersViewProps {
   specificPair: CurrencyPairProps | {};
